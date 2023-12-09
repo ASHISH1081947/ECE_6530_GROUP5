@@ -1,8 +1,10 @@
 %% Section 2.1: Design Two Lowpass Filters
+% sampling frequency is 10000 and use filter coefficients(Rect30 and Ham30)
+% which are generated from GUI Filter design
 fs = 10000;
 freq_response_rectangular = freqz(Rect30, 1, linspace(0, pi, fs));
 freq_response_hamming = freqz(Ham30, 1, linspace(0, pi, fs));
-
+%%
 % Plot frequency responses
 figure;
 subplot(2, 1, 1);
@@ -18,6 +20,9 @@ title('Hamming Window Frequency Response');
 xlabel('Frequency (radians)');
 ylabel('Magnitude');
 grid;
+%%
+% Measurements from plot by zooming in...
+
 % (a) Measurement of Passband Edge (wp) for Rectangular window
 wp_rectangular = 1.170;
 
@@ -32,6 +37,7 @@ ws_hamming = 1.545;
 % (e) Cutoff Frequency Comparison
 cutoff_rectangular = (wp_rectangular + ws_rectangular) / 2;
 cutoff_hamming = (wp_hamming + ws_hamming) / 2;
+%%
 % Display Results
 disp('(a) Passband Edge (wp) for Rectangular window:');
 disp(num2str(wp_rectangular));
@@ -52,16 +58,21 @@ disp('For Hamming window:');
 disp(cutoff_hamming);
 
 %% Section 2.2: Transition Zone of the LPF
+% (a) Determine Transition Width for Rectangular window and Hamming Window
 
-% (a) Determine Transition Width for Rectangular window
 transition_width_rectangular = ws_rectangular - wp_rectangular;
 transition_width_hamming=ws_hamming-wp_hamming;
 disp('(a) Transition Width for Rectangular window:');
 disp(num2str(transition_width_rectangular));
 disp('(a) Transition Width for Hamming window:');
 disp(num2str(transition_width_hamming));
-
+%%
+% (b) Ripple Comparission
 disp('(b) Comment: When comparing two Mth order filters, the one with a smaller transition width will have larger ripples.');
+%%
+% (c) Repeating the experimentwith coefficient data generated from GUI
+% Filter for Hamming order 60.
+
 freq_response_hamming_new = freqz(Ham60, 1, linspace(0, pi, fs));
 figure;
 plot(linspace(0, pi, fs), abs(freq_response_hamming_new));
@@ -73,8 +84,6 @@ wp_hamming_new=1.10;
 ws_hamming_new=1.40;
 
 transition_width_hamming_new = ws_hamming_new - wp_hamming_new;
-
-% (d) Compare transition width for different orders
 disp('(c) and (d) Measurement of wp, ws, and Transition Width for new Hamming window:');
 disp('(c) Passband Edge (wp) for new Hamming window:');
 disp(num2str(wp_hamming_new));
@@ -84,8 +93,8 @@ disp(num2str(ws_hamming_new));
 
 disp('(d) Transition Width for new Hamming window:');
 disp(num2str(transition_width_hamming_new));
-
-% Compare transition width for different orders
+%%
+% (d) Compare transition width for different orders
 disp('(d) Comparison of Transition Width for different orders:');
 disp('(a) Transition Width for Hamming window:');
 disp(num2str(transition_width_hamming));
@@ -109,16 +118,14 @@ wp_spec = 0.68 * pi;
 ws_spec = 0.72 * pi;
 del_p_spec = 0.01;
 del_s_spec = 0.01;
-
+%%
 % Calculate filter order (M)
 M_spec = ceil((-20 * log10(del_s_spec)) / (6.6 * (ws_spec - wp_spec)));
 disp(' Order of filter is:');
 disp(M_spec);
 % Calculate filter length (L)
 L_spec = M_spec + 1;
-
-% ... (previous code)
-
+%%
 % (c) Design Hamming-Windowed FIR Filter
 
 % Design the Hamming-windowed FIR filter
@@ -142,7 +149,7 @@ ylabel('Magnitude');
 legend('Frequency Response', 'Cutoff Frequency', 'Location', 'Best');
 grid;
 
-
+%%
 % (b) Sketch of Ideal Filter and Template
 % Plot the ideal filter
 figure;
@@ -158,36 +165,3 @@ grid;
 disp(' correct value to use for the cutoff frequency');
 disp(2.199);
 
-% Display the plots to your lab instructor for verification
-
-
-% % Design the Hamming-windowed FIR filter
-% b_spec = fir1(round(M_spec), [wp_spec/pi, ws_spec/pi], 'bandpass', hamming(M_spec+1));
-% 
-% % Calculate the actual cutoff frequency
-% wc_spec = (wp_spec + ws_spec) / 2;
-% 
-% % Plot the frequency response
-% freq_response_spec = freqz(b_spec, 1, linspace(0, pi, fs));
-% 
-% % Plot the ideal filter and template
-% figure;
-% 
-% % (b) Sketch of Ideal Filter and Template
-% subplot(2, 1, 1);
-% % Plot the ideal filter
-% plot([0, wp_spec, wp_spec, ws_spec, ws_spec, pi], [1, 1, 1+del_p_spec, 1+del_p_spec, 0, 0], 'g');
-% hold on;
-% % Plot the template
-% plot([0, wp_spec, wp_spec, ws_spec, ws_spec, pi], [1, 1, 1+del_p_spec, 1+del_p_spec, del_s_spec, del_s_spec], 'r--');
-% title('Ideal Filter and Template');
-% xlabel('Frequency (radians)');
-% ylabel('Magnitude');
-% legend('Ideal Filter', 'Template', 'Location', 'Best');
-% grid;
-% 
-% % (c) Design Hamming-Windowed FIR Filter
-% subplot(2, 1, 2);
-% % Plot the frequency response of the designed filter
-% plot(linspace(0, pi, fs), abs(freq_response_spec));
-% hold on;
