@@ -1,3 +1,6 @@
+%% 2 Lab Exercise: FIR Filter Design GUI
+%%
+
 %% Section 2.1: Design Two Lowpass Filters
 % sampling frequency is 10000 and use filter coefficients(Rect30 and Ham30)
 % which are generated from GUI Filter design

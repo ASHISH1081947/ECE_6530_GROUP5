@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>LAB2</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-12-08"><meta name="DC.source" content="LAB2.m"><style type="text/css">
+      --><title>2 Lab Exercise: FIR Filter Design GUI</title><meta name="generator" content="MATLAB 9.10"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-12-08"><meta name="DC.source" content="LAB2.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -67,7 +67,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Section 2.1: Design Two Lowpass Filters</a></li><li><a href="#5">Section 2.2: Transition Zone of the LPF</a></li><li><a href="#9">Section 2.3: Design FIR Filter to Meet Given Specifications</a></li></ul></div><h2 id="1">Section 2.1: Design Two Lowpass Filters</h2><p>sampling frequency is 10000 and use filter coefficients(Rect30 and Ham30) which are generated from GUI Filter design</p><pre class="codeinput">fs = 10000;
+  </style></head><body><div class="content"><h1>2 Lab Exercise: FIR Filter Design GUI</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Section 2.1: Design Two Lowpass Filters</a></li><li><a href="#5">Section 2.2: Transition Zone of the LPF</a></li><li><a href="#9">Section 2.3: Design FIR Filter to Meet Given Specifications</a></li></ul></div><h2 id="1">Section 2.1: Design Two Lowpass Filters</h2><p>sampling frequency is 10000 and use filter coefficients(Rect30 and Ham30) which are generated from GUI Filter design</p><pre class="codeinput">fs = 10000;
 freq_response_rectangular = freqz(Rect30, 1, linspace(0, pi, fs));
 freq_response_hamming = freqz(Ham30, 1, linspace(0, pi, fs));
 </pre><p>Plot frequency responses</p><pre class="codeinput">figure;
@@ -243,6 +243,9 @@ disp(2.199);
 
 </pre><img vspace="5" hspace="5" src="LAB2_04.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2021a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
+%% 2 Lab Exercise: FIR Filter Design GUI
+%%
+
 %% Section 2.1: Design Two Lowpass Filters
 % sampling frequency is 10000 and use filter coefficients(Rect30 and Ham30)
 % which are generated from GUI Filter design
